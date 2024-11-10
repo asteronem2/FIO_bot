@@ -10,7 +10,7 @@ class Fio(NextMessageInterface):
             return True
 
     async def process(self, *args, **kwargs) -> None:
-        await self.user_core.update({'id': self.db_user.id}, fio=self.text)
+        await self.user_core.update({'id': self.db_user.id}, fio=self.text, next_message_info=None)
         await self.bot.send_message(MsgModel(
             chat_id=self.chat.id,
             text=self.locale['ThanksTxt']
