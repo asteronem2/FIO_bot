@@ -8,6 +8,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 BOT_TOKEN: str = os.environ.get('BOT_TOKEN')
+ADMIN_ID = 892097042
 
 if not BOT_TOKEN:
     raise Exception('You need to write environment variable BOT_TOKEN in ".env" file')

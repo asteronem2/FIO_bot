@@ -24,6 +24,7 @@ class MsgModel:
     pin: bool = False
 
 class BotInter:
+    bot = bot
     @staticmethod
     async def send_message(model: MsgModel) -> Message:
         if not model.photo:

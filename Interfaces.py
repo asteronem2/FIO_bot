@@ -63,7 +63,6 @@ class TextMessageInterface:
 
         self.db_user = await self.user_core.find_one(user_id=self.user.id)
 
-
 class CallbackQueryInterface:
     db_user: User
 
@@ -117,7 +116,6 @@ class CallbackQueryInterface:
 
         self.db_user = await self.user_core.find_one(user_id=self.user.id)
 
-
 class NextMessageInterface:
     cdata: str
 
@@ -167,6 +165,7 @@ class NextMessageInterface:
 
         self.db_user = await self.user_core.find_one(user_id=self.user.id)
         self.next_message_info = self.db_user.next_message_info
+        self.nmi = self.next_message_info
 
 class ReactionInterface:
     def __init__(self, reaction: MessageReactionUpdated):
@@ -216,7 +215,6 @@ class ReactionInterface:
             )
 
         self.db_user = await self.user_core.find_one(user_id=self.user.id)
-
 
 class InlineQueryInterface:
     def __init__(self, inline: InlineQuery):
