@@ -129,12 +129,17 @@ async def message_handler(reaction: MessageReactionUpdated):
 
 async def main():
     init_event_classes()
-    print('BOT STARTED')
-    await disp.start_polling(
-        bot,
-        allowed_updates=['message', 'message_reaction', 'inline_query', 'callback_query'],
-        handle_signals=False
-    )
+    while True:
+        try:
+            print('BOT STARTED')
+            await disp.start_polling(
+                bot,
+                allowed_updates=['message', 'message_reaction', 'inline_query', 'callback_query'],
+                handle_signals=False
+            )
+        except Exception as err:
+            traceback.print_exc()
+            continue
 
 if __name__ == '__main__':
     asyncio.run(main())
