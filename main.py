@@ -61,6 +61,9 @@ async def message_handler(message: Message):
         else:
             defined_cls = await check_define(message, TextMessageClasses, Interfaces.TextMessageInterface)
 
+        if not defined_cls:
+            return
+
         init_cls = defined_cls(message)
         await init_cls.async_init()
 
@@ -75,7 +78,7 @@ async def message_handler(message: Message):
         traceback.print_exc()
 
 @disp.callback_query()
-async def message_handler(callback: CallbackQuery):
+async def callback_handler(callback: CallbackQuery):
     try:
         print(f'\n\n\033[1;36mCALLBACK {callback.from_user.username}: \033[1;32m{callback.data}\033[0;0m')
 
@@ -94,7 +97,7 @@ async def message_handler(callback: CallbackQuery):
         traceback.print_exc()
 
 @disp.inline_query()
-async def message_handler(inline: InlineQuery):
+async def inline_handler(inline: InlineQuery):
     try:
         defined_cls = await check_define(inline, InlineQueryClasses, Interfaces.InlineQueryInterface)
 
@@ -111,7 +114,7 @@ async def message_handler(inline: InlineQuery):
         traceback.print_exc()
 
 @disp.message_reaction()
-async def message_handler(reaction: MessageReactionUpdated):
+async def reaction_handler(reaction: MessageReactionUpdated):
     try:
         defined_cls = await check_define(reaction, ReactionClasses, Interfaces.ReactionInterface)
 

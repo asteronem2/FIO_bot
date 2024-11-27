@@ -24,6 +24,7 @@ class User(Base):
     role: Mapped[lit_role] = mapped_column(default='user')
     next_message_info: Mapped[str|None] = mapped_column(default=None)
     fio: Mapped[str|None]
+    ref: Mapped[str|None]
 
     def __str__(self):
         return f'USER: id={self.id}, username={self.username or "NULL"}, role={self.role}'
