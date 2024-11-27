@@ -59,6 +59,7 @@ class GetTable(TextMessageInterface):
         ws.cell(row=1, column=3, value='USERNAME')
         ws.cell(row=1, column=4, value='FIRST_NAME')
         ws.cell(row=1, column=5, value='ФИО')
+        ws.cell(row=1, column=6, value='РЕФЕР')
 
         row = 2
 
@@ -68,6 +69,7 @@ class GetTable(TextMessageInterface):
             ws.cell(row=row, column=3, value=i.username or ' ')
             ws.cell(row=row, column=4, value=i.first_name or ' ')
             ws.cell(row=row, column=5, value=i.fio or ' ')
+            ws.cell(row=row, column=6, value=i.ref or ' ')
             row += 1
 
         wb.save(file_name)
