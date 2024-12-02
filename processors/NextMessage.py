@@ -43,6 +43,8 @@ class Distribution(NextMessageInterface):
                 count += 1
             except aiogram.exceptions.TelegramBadRequest:
                 continue
+            except aiogram.exceptions.TelegramForbiddenError:
+                continue
 
         await self.bot.send_message(MsgModel(
             chat_id=self.user.id,
