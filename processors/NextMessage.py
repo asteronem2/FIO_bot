@@ -38,7 +38,9 @@ class Distribution(NextMessageInterface):
             try:
                 await self.bot.send_message(MsgModel(
                     chat_id=user.user_id,
-                    text=self.text
+                    text=self.text,
+                    photo=None if not self.message.photo else self.message.photo[-1].file_id,
+                    photo_type='file_id'
                 ))
                 count += 1
             except aiogram.exceptions.TelegramBadRequest:
