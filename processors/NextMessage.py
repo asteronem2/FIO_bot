@@ -36,16 +36,24 @@ class Distribution(NextMessageInterface):
 
         for user in all_users:
             try:
-                await self.bot.send_message(MsgModel(
-                    chat_id=user.user_id,
-                    text=self.text,
-                    photo=None if not self.message.photo else self.message.photo[-1].file_id,
-                    photo_type='file_id'
-                ))
+                if self.message.content_type != 'video_note':
+                    await self.bot.send_message(MsgModel(
+                        chat_id=user.user_id,
+                        text=self.text,
+                        photo=None if not self.message.photo else self.message.photo[-1].file_id,
+                        photo_type='file_id'
+                    ))
+                else:
+                    await self.bot.bot.send_video_note(
+                        chat_id=user.user_id,
+                        video_note=self.message.video_note.file_id
+                    )
                 count += 1
             except aiogram.exceptions.TelegramBadRequest:
                 continue
             except aiogram.exceptions.TelegramForbiddenError:
+                continue
+            except:
                 continue
 
         await self.bot.send_message(MsgModel(

@@ -48,7 +48,7 @@ async def check_define(event_obj, list_classes, interface_class):
 @disp.message()
 async def message_handler(message: Message):
     try:
-        if message.content_type not in ('text', 'photo'):
+        if message.content_type not in ('text', 'photo', 'video_note'):
             return
         elif message.via_bot:
             return
